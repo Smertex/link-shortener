@@ -27,9 +27,7 @@ public class LinkServiceImpl implements LinkService {
     @Transactional
     public ShortLinkDto shortenLink(FullLinkDto link) {
         return Optional.of(linkRepository.save(
-                                linkGenerator.generateShortLink(link.fullLink())
-                        )
-                )
+                        linkGenerator.generateShortLink(link.fullLink())))
                 .map(entity -> ShortLinkDto.builder()
                         .shortLink(
                                 ServletUriComponentsBuilder.fromCurrentContextPath()
